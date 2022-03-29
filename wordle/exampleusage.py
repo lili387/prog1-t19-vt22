@@ -1,4 +1,3 @@
-from matplotlib.pyplot import xlim
 import SwedishWordle
 
 game = SwedishWordle.Game(5) # skapa ett nytt wordlespel med ord som är 5 långa
@@ -23,3 +22,15 @@ print(f'Det finns {len(game.words_in_game)} ord som är 10 bokstäver. Några av
 
 # det är viktigt att man gissar ett riktigt ord som finns i listan och är rätt längd annars ger spelet ett exception
 game.Guess('läderlappen')
+
+
+def f(w):
+    return 'm' in w and 'l' in w and w[1] == 'a' and not w[4] == 'a' and not w[4] == 'l' and not w[4] == 'm'
+
+print(list(filter(f, game.words_in_game)))
+
+game.Start_new_game(9)
+for w in game.words_in_game:
+    r = game.Guess(w)
+    if not 0 in r and not 1 in r:
+        print (w)
